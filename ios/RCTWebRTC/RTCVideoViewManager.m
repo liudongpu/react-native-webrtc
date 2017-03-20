@@ -195,6 +195,18 @@ typedef NS_ENUM(NSInteger, RTCVideoViewObjectFit) {
       || newValue.size.height != oldValue.size.height) {
     subview.frame = newValue;
   }
+  
+  //add begin 调整扬声器
+  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    UInt32 doChangeDefaultRoute = 1;
+    
+    AudioSessionSetProperty (
+                             kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,
+                             sizeof (doChangeDefaultRoute),
+                             &doChangeDefaultRoute
+                             );
+  //add end
 }
 
 /**
